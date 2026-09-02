@@ -1,0 +1,30 @@
+{
+  "name": "SARAPIQUI_FISCALIZACION_V26_V27_FINAL_REPO",
+  "baseline": "V26-V27",
+  "repository_type": "application_and_control_repository",
+  "application_baseline_present": false,
+  "application_status_file": "app_baseline/STATUS.json",
+  "module_name": "INFORMES",
+  "expected_outputs": [
+    "INFORME TÉCNICO + RESOLUCIÓN",
+    "SOLICITUD DE RECTIFICACIÓN MS_FBI_RD"
+  ],
+  "load_note": "Repositorio fuente listo para GitHub. Los usuarios Windows/Android deben instalar los EXE/APK generados por GitHub Actions; index.html es la fuente web canónica, no el sustituto del lector nativo.",
+  "portable_archive_requirement": "single_root_directory",
+  "application_entrypoint": "index.html",
+  "portable_entrypoint": "index.html",
+  "application_executable_present": true,
+  "application_mode": "source_repo_with_pwa_electron_android_wrappers_and_legacy_data_recovery",
+  "notes": "Fuente consolidada V27.3.9 con wrappers Electron/Android y workflows de distribución. Los binarios nativos se generan en GitHub Actions.",
+  "canonical_entrypoint": "index.html",
+  "compatibility_entrypoint": "app/index.html",
+  "native_binaries_present": false,
+  "native_distribution": "github_actions_builds_exe_and_apk",
+  "native_artifacts": [
+    "Fiscalizacion-L26-Setup-<version>.exe",
+    "Fiscalizacion-L26-Android.apk"
+  ],
+  "source_of_truth": "github_main",
+  "runtime_distribution_manifest": "config/runtime_distribution_manifest.json",
+  "distribution_parity_policy": "Windows, Android y PWA deben empaquetar bytes runtime del mismo commit; cualquier diferencia SHA-256 bloquea la publicación."
+}

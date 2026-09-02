@@ -1,0 +1,23 @@
+FISCALIZACION L26 - USO EN WINDOWS
+=================================
+
+USUARIO FINAL
+La forma correcta de usar L-26 en Windows es instalar el instalador .exe generado y publicado por GitHub Releases:
+
+  Fiscalizacion-L26-Setup-<version>.exe
+
+Después de instalarlo, abra "Fiscalizacion L26" desde el escritorio o el menú Inicio.
+No abra index.html como sustituto de la aplicación instalada si necesita:
+- Abrir enlaces dentro de L-26.
+- Leer página.
+- Leer área.
+- Usar el lector nativo de escritorio.
+
+DATOS EXISTENTES
+Si todavía existen expedientes en una instalación Web/PWA anterior, no borre ese almacenamiento. Exporte un respaldo y compruebe su importación en la aplicación instalada antes de retirar la instalación anterior.
+
+DESARROLLO
+ABRIR_L26_WINDOWS.cmd se conserva únicamente como herramienta técnica para desarrolladores o diagnóstico del repositorio fuente. No es el método de instalación para el usuario final.
+
+ACTUALIZACIONES
+La aplicación Windows instalada se actualiza instalando una nueva versión .exe publicada en GitHub Releases. La base local no debe borrarse durante la actualización.
