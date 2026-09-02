@@ -20,8 +20,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Instalar pytest
-        run: python -m pip install --upgrade pytest
+      - name: Instalar dependencias de pruebas
+        run: python -m pip install --upgrade pytest lxml
       - name: Ejecutar compuerta de regresión
         run: python scripts/run_ci.py
       - name: Verificar fuente única y entrypoints

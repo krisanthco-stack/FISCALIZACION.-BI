@@ -19,8 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Instalar pytest
-        run: python -m pip install --upgrade pytest
+      - name: Instalar dependencias de pruebas
+        run: python -m pip install --upgrade pytest lxml
       - name: Pruebas antes de empaquetar
         run: python scripts/run_ci.py
       - name: Incluir motor PDF compatible offline

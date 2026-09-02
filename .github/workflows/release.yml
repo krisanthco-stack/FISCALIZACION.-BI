@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Instalar pytest
-        run: python -m pip install --upgrade pytest
+      - name: Instalar dependencias de pruebas
+        run: python -m pip install --upgrade pytest lxml
       - name: Pruebas de regresión
         run: python scripts/run_ci.py
       - name: Aplicar versión del tag
@@ -63,8 +63,8 @@ jobs:
           gradle-version: 9.5.0
       - name: Preparar Android SDK
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36" "build-tools;36.0.0"
-      - name: Instalar pytest
-        run: python -m pip install --upgrade pytest
+      - name: Instalar dependencias de pruebas
+        run: python -m pip install --upgrade pytest lxml
       - name: Pruebas de regresión
         run: python scripts/run_ci.py
       - name: Aplicar versión del tag
