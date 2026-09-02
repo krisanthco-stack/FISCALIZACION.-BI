@@ -1,0 +1,10 @@
+Cambio aplicado exclusivamente a los workflows de GitHub Actions:
+
+ci.yml        : 1 instalación de dependencias corregida
+windows.yml   : 1 instalación de dependencias corregida
+android.yml   : 1 instalación de dependencias corregida
+pages.yml     : 1 instalación de dependencias corregida
+release.yml   : 2 instalaciones de dependencias corregidas (jobs Windows y Android)
+
+Comando nuevo en todos los casos:
+python -m pip install --upgrade pytest lxml

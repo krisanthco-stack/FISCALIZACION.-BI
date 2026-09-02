@@ -1,0 +1,45 @@
+L-26 — REEMPLAZO DE WORKFLOWS GITHUB ACTIONS
+Fecha: 2026-09-02
+
+OBJETIVO
+Corregir el fallo de GitHub Actions causado porque las pruebas requieren lxml y los workflows solo instalaban pytest.
+
+CAMBIO ÚNICO
+Antes:
+  python -m pip install --upgrade pytest
+
+Ahora:
+  python -m pip install --upgrade pytest lxml
+
+No se modifica la aplicación, HTML, CSS, JavaScript, funciones, informes ni machotes.
+
+PASOS EN GITHUB WEB
+1. Abra el repositorio FISCALIZACION.-BI.
+2. Entre a Code.
+3. Abra la carpeta .github y luego workflows.
+4. Pulse Add file > Upload files.
+5. Desde esta carpeta seleccione y suba JUNTOS estos cinco archivos:
+   - ci.yml
+   - windows.yml
+   - android.yml
+   - pages.yml
+   - release.yml
+6. GitHub mostrará ci.yml como modificado y los demás como nuevos o modificados, según lo que ya exista.
+7. En el mensaje del commit escriba:
+   Corregir dependencias de pruebas GitHub Actions
+8. Seleccione Commit directly to the main branch.
+9. Pulse Commit changes.
+10. Entre a Actions.
+11. Abra “L26 - Pruebas”. La ejecución nueva se inicia automáticamente por el push a main.
+12. Espere a que “Ejecutar compuerta de regresión” termine en verde.
+
+IMPORTANTE
+- No use los workflows sugeridos por GitHub (Jekyll, Webpack, Android CI genérico, etc.).
+- No edite index.html ni los machotes para resolver este error.
+- Si “L26 - Pruebas” vuelve a fallar, copie o capture las primeras líneas rojas del paso que falla y revíselas antes de publicar Windows/Android/Pages.
+
+VERIFICACIÓN LOCAL DE LA MISMA FUENTE
+- Python: 227 passed, 3 skipped
+- Node: 81 passed
+- Electron: 14 passed
+- L26 CI gate: PASS
