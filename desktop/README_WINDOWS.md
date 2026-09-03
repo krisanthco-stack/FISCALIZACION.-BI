@@ -4,7 +4,7 @@ Esta carpeta contiene la envoltura Electron de la aplicación L-26. No reemplaza
 
 ## Instalador autónomo
 
-El instalador `Fiscalizacion-L26-Setup-27.3.9.exe` y la versión `Fiscalizacion-L26-Portable-27.3.9.exe` incluyen Electron y su propio Chromium. El usuario final no necesita instalar Node.js, Python, GitHub, Chrome ni Edge para ejecutar L-26.
+El instalador `Fiscalizacion-L26-Setup-27.3.10.exe` y la versión `Fiscalizacion-L26-Portable-27.3.10.exe` incluyen Electron y su propio Chromium. El usuario final no necesita instalar Node.js, Python, GitHub, Chrome ni Edge para ejecutar L-26.
 
 Al abrir la aplicación, Electron inicia un servidor privado ligado exclusivamente a `127.0.0.1` y carga el runtime L-26 empaquetado dentro del instalador. Service Worker, IndexedDB y Cache Storage se mantienen en un origen HTTP local estable y la aplicación puede iniciar sin Internet.
 
@@ -22,8 +22,8 @@ El script ejecuta la regresión completa, prepara los recursos PDF offline, inst
 
 Los artefactos se generan en `desktop/dist/`:
 
-- `Fiscalizacion-L26-Setup-27.3.9.exe`: instalador Windows con acceso directo y desinstalador.
-- `Fiscalizacion-L26-Portable-27.3.9.exe`: ejecutable portable autónomo.
+- `Fiscalizacion-L26-Setup-27.3.10.exe`: instalador Windows con acceso directo y desinstalador.
+- `Fiscalizacion-L26-Portable-27.3.10.exe`: ejecutable portable autónomo.
 
 Node.js/npm son herramientas de **compilación**, no requisitos del usuario final.
 

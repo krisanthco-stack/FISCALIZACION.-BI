@@ -1,6 +1,6 @@
 {
   "name": "fiscalizacion-l26-desktop",
-  "version": "27.3.9",
+  "version": "27.3.10",
   "private": true,
   "description": "Envoltura de escritorio Windows para Fiscalización Bienes Inmuebles L-26",
   "main": "main.js",

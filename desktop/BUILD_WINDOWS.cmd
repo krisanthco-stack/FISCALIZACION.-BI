@@ -24,7 +24,10 @@ if errorlevel 1 (
 )
 
 echo [1/3] Instalando dependencias de construccion...
-call npm install --no-audit --no-fund
+call npm config set fetch-retries 5
+call npm config set fetch-retry-mintimeout 10000
+call npm config set fetch-retry-maxtimeout 60000
+call npm install --no-audit --no-fund --prefer-offline
 if errorlevel 1 goto :error
 
 echo.
@@ -40,8 +43,9 @@ if errorlevel 1 goto :error
 echo.
 echo ============================================================
 echo CONSTRUCCION COMPLETA
-echo Instalador: dist\Fiscalizacion-L26-Setup-26.0.0.exe
-echo Portable:   dist\Fiscalizacion-L26-Portable-26.0.0.exe
+echo Instaladores generados:
+dir /b dist\Fiscalizacion-L26-Setup-*.exe 2^>nul
+dir /b dist\Fiscalizacion-L26-Portable-*.exe 2^>nul
 echo ============================================================
 start "" "%~dp0dist"
 pause
