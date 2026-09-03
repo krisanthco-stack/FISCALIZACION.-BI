@@ -9,6 +9,7 @@ import zipfile
 import sys
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPTS_DIR.parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 from distribution_parity import compare_runtime_tree, compare_runtime_zip

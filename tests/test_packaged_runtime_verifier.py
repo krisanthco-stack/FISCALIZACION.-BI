@@ -146,3 +146,23 @@ def test_android_verifier_rejects_runtime_that_differs_from_source(tmp_path):
     report = mod.verify_android(apk, source_root=source)
     assert report['ok'] is False
     assert any('Paridad' in item and 'index.html' in item for item in report['errors'])
+
+
+def test_cli_android_uses_repository_root_without_nameerror(tmp_path):
+    import json
+    import subprocess
+    import sys
+
+    missing_apk = tmp_path / 'missing.apk'
+    cp = subprocess.run(
+        [sys.executable, str(SCRIPT), '--android', str(missing_apk)],
+        cwd=SCRIPT.parents[1],
+        capture_output=True,
+        text=True,
+    )
+
+    assert cp.returncode == 2
+    assert 'NameError' not in cp.stderr
+    report = json.loads(cp.stdout)
+    assert report['ok'] is False
+    assert report['apk'] == str(missing_apk)
