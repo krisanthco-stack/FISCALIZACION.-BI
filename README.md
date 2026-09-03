@@ -1,4 +1,4 @@
-# Fiscalización de Bienes Inmuebles L-26 — V27.3.9
+# Fiscalización de Bienes Inmuebles L-26 — V27.3.10
 
 Repositorio consolidado de la aplicación L-26. La fuente canónica es `index.html`; `Fiscalizacion_BI_V27_FINAL.html` se mantiene sincronizado y `app/index.html` es únicamente un redireccionamiento de compatibilidad.
 
