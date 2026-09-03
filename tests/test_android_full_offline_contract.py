@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 READER = (ROOT / 'app/assets/l26_pdf_reader.js').read_text(encoding='utf-8')
 SW = (ROOT / 'sw.js').read_text(encoding='utf-8')
 GRADLE = (ROOT / 'android/app/build.gradle.kts').read_text(encoding='utf-8')
+GRADLE_PROPERTIES = (ROOT / 'android/gradle.properties').read_text(encoding='utf-8')
 MAIN = (ROOT / 'android/app/src/main/java/cr/go/sarapiqui/fiscalizacion/l26/MainActivity.java').read_text(encoding='utf-8')
 VENDOR = (ROOT / 'scripts/vendor_pdfjs.py').read_text(encoding='utf-8')
 HTML = (ROOT / 'index.html').read_text(encoding='utf-8')
@@ -32,6 +33,11 @@ def test_vendor_step_packages_full_pdf_runtime_support_files():
 def test_android_uses_bundled_mlkit_ocr_not_downloadable_play_services_model():
     assert 'com.google.mlkit:text-recognition:16.0.1' in GRADLE
     assert 'play-services-mlkit-text-recognition' not in GRADLE
+
+
+def test_androidx_is_enabled_for_mlkit_dependencies():
+    assert 'android.useAndroidX=true' in GRADLE_PROPERTIES
+    assert 'android.useAndroidX=false' not in GRADLE_PROPERTIES
 
 
 def test_trusted_android_bridge_exposes_local_ocr_for_pdf_images():

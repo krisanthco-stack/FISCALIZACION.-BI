@@ -39,4 +39,6 @@ def test_windows_build_script_is_one_click_and_runs_verification():
     assert 'npm install' in text
     assert 'npm test' in text
     assert 'npm run dist:win' in text
-    assert 'Fiscalizacion-L26-Setup-26.0.0.exe' in text
+    assert 'Fiscalizacion-L26-Setup-*.exe' in text
+    assert 'Fiscalizacion-L26-Portable-*.exe' in text
+    assert '26.0.0' not in text

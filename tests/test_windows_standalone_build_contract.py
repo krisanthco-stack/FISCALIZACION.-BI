@@ -29,8 +29,12 @@ def test_build_script_declares_reproducible_steps():
     flattened = [' '.join(step.command) for step in steps]
     assert any('scripts/run_ci.py' in cmd for cmd in flattened)
     assert any('scripts/vendor_pdfjs.py' in cmd and '--required' in cmd for cmd in flattened)
-    assert any(('npm ci' in cmd or 'npm install' in cmd) for cmd in flattened)
-    assert any('npm run dist:win' in cmd for cmd in flattened)
+    dependency_step = next(step for step in steps if step.label == 'Dependencias Electron')
+    assert dependency_step.command[0] in {'npm', 'npm.cmd'}
+    assert dependency_step.command[1] in {'ci', 'install'}
+    build_step = next(step for step in steps if step.label == 'Build Windows NSIS + portable')
+    assert build_step.command[0] in {'npm', 'npm.cmd'}
+    assert build_step.command[1:] == ('run', 'dist:win')
     assert any('scripts/verify_packaged_runtime.py' in cmd and '--windows' in cmd for cmd in flattened)
 
 

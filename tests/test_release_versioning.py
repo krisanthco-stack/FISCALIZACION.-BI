@@ -48,4 +48,4 @@ def test_release_version_script_versions_service_worker_cache_generation():
     assert "sw.js" in script
     assert 'release-' in script
     sw = read('sw.js')
-    assert 'release-27.3.9' in sw
+    assert 'release-27.3.10' in sw
