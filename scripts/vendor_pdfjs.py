@@ -5,12 +5,14 @@ import argparse
 import shutil
 import tarfile
 import tempfile
+import time
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'app' / 'assets' / 'vendor' / 'pdfjs-4.10.38-legacy'
 VERSION = '4.10.38'
 ARCHIVE_NAME = 'pdfjs-dist-4.10.38.tgz'
+DOWNLOAD_ATTEMPTS = 3
 ARCHIVE_URLS = [
     f'https://registry.npmjs.org/pdfjs-dist/-/{ARCHIVE_NAME}',
     f'https://registry.yarnpkg.com/pdfjs-dist/-/{ARCHIVE_NAME}',
@@ -38,17 +40,20 @@ def runtime_ready():
 def download_archive(target: Path):
     errors = []
     for url in ARCHIVE_URLS:
-        try:
-            print(f'Downloading {url}')
-            req = urllib.request.Request(url, headers={'User-Agent': 'L26-GitHub-Build/1.0'})
-            with urllib.request.urlopen(req, timeout=90) as response, target.open('wb') as out:
-                shutil.copyfileobj(response, out)
-            if target.stat().st_size < 1_000_000:
-                raise RuntimeError('archivo PDF.js descargado demasiado pequeño')
-            return
-        except Exception as exc:
-            errors.append(f'{url}: {exc}')
-            target.unlink(missing_ok=True)
+        for attempt in range(1, DOWNLOAD_ATTEMPTS + 1):
+            try:
+                print(f'Downloading {url} (intento {attempt}/{DOWNLOAD_ATTEMPTS})')
+                req = urllib.request.Request(url, headers={'User-Agent': 'L26-GitHub-Build/1.0'})
+                with urllib.request.urlopen(req, timeout=90) as response, target.open('wb') as out:
+                    shutil.copyfileobj(response, out)
+                if target.stat().st_size < 1_000_000:
+                    raise RuntimeError('archivo PDF.js descargado demasiado pequeño')
+                return
+            except Exception as exc:
+                errors.append(f'{url} intento {attempt}: {exc}')
+                target.unlink(missing_ok=True)
+                if attempt < DOWNLOAD_ATTEMPTS:
+                    time.sleep(min(5 * attempt, 15))
     raise RuntimeError(' | '.join(errors))
 
 

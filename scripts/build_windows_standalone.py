@@ -36,7 +36,7 @@ def build_steps(root: Path) -> list[BuildStep]:
         BuildStep('PDF.js offline', (python, 'scripts/vendor_pdfjs.py', '--required'), root),
         BuildStep(
             'Dependencias Electron',
-            (npm, 'install', '--no-audit', '--no-fund', '--prefer-offline'),
+            (npm, 'install', '--no-audit', '--no-fund', '--prefer-offline', '--fetch-retries=5', '--fetch-retry-mintimeout=10000', '--fetch-retry-maxtimeout=60000'),
             desktop,
         ),
         BuildStep('Build Windows NSIS + portable', (npm, 'run', 'dist:win'), desktop),
